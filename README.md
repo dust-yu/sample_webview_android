@@ -1,30 +1,40 @@
-## Android WebView的几种选择对比
+## Hybrid技术开发之 Android WebView的可选替换方案。 
 
-现在的移动开发，一个明显的趋势是HTML占据了越来越重要的位置,H5不再是简单的一个浏览网页的行为，在非常多的APP中，它承担了许多原本许要原生开发的功能；Android的H5支持则是个比较头痛的事情
+随着 Web 技术和移动设备的快速发展，Hybrid 技术目前已经成为一种主流常见的方案。一套好的Hybrid架构方案能让 App 既能拥有极致的体验和性能，同时也能拥有 Web技术灵活的开发模式、跨平台能力以及热更新机制，想想是不是都鸡冻不已。 
 
 <!--more-->
 
-笔者在进行IOS开发时，WebView从来都不是问题，在IOS上不仅WebView统一，而且性能极佳，也很少需要考虑兼容性问题；
+Hybrid 技术开发，当前的趋势是HTML占据了越来越重要的位置，且H5不再是简单的浏览网页的行为，它承担着许多原本原生APP开发的功能。然后，当实际开发才发现Android平台H5的支持/渲染效率，是个非常麻烦的事情。
 
-但这个问题在Android上则表现的非常不一样，由于机型众多，WebView的内核众多，不同手机的WebView的兼容性，性能相差也比较大，如果你的APP在Android上对H5有较高需求，你就需要一个好的解决方案
+<!--more-->
 
->笔者现在所在的公司所负责开发的APP，就是一款企业级APP，由于需要对接企业开发的各式各样的H5的业务系统，因此在H5方面要求较高；也因此笔者对这一方面了解稍等有一点
+当前WebView在Android各平台上表现的不一样，由于机型过多且集成的WebView内核版本不一致，不同手机的WebView兼容性和性能差异也较大。
+如果APP对H5有较高的依赖性，则需要一个较好的、综合性能优异、各平台统一的WebView方案。
 
-Android WebView的选择有三种方案，分别是
+因此，就需要对各种WebView替换方案做优选比对。
 
-1. 使用Android系统自带的WebView
-2. 使用X5内核的WebView
-3. 使用基于chrome webkit的crosswalk WebView
+> PS：iOS Hybrid开发方案的WebView没有太大问题。因为，UIWebView没有碎片化问题，且性能极佳，也不需要考虑太多兼容性的问题。
 
-如上述三种方案，第1个是最原始的解决方案，第2，3个则分别是腾讯，corsswalk的解决方案
 
-几种方案的对照如下表:
 
-| 方案 | 方案说明| 实际效果 | 优缺点 | html5test分数|
-|----------|---------|--------|-------|-------|
-| 系统自带WebView | Android默认 | 最差 | 优：没有额外的JAR及负担，原生API 缺: 兼容性，性能在不同手机上显示差别很大 | 最差 |
-| X5 WebView | 腾讯产品，微信，QQ浏览器就是使用X5内核 | 一般 | 优：提供了一个兼容性的解决方案,且微信，QQ浏览器都在用，可信度高  缺: 解决的能力一般，而且某些方面反而加大了开发工作量;而且不支持cordova | 一般| 
-| crosswalk | 国外为Android提供的一个融合chrome webkit的解决方案 | 最佳 | 优:没有兼容性，性能问题,且支持corodva 缺：18M的包，而且区分不同的arm,x86等CPU | 较佳
+##### 目前已知 Android WebView的可选替换方案： 
+
+1. Android系统默认的WebView
+2. [腾讯 X5内核的X5WebView](https://x5.tencent.com/)
+3. [Crosswalk 基于Chromium/Blink的WebView](https://github.com/crosswalk-project)
+4. [Mozilla Gecko浏览器引擎的Geckoview](https://mozilla.github.io/geckoview/)
+
+
+如上述几种方案的对照如下表:
+
+##### 测试对比性能指标：(未设置浏览器缓存)
+
+| WebView方案                | 实际效果 | html5test评测分数 | 方案说明 | 优缺点 |
+|----------              |---------|--------        |-------  |-------|
+| OriginalWebView(系统默认)  | 最差     | 485               | Android默认 | 优：没有额外的JAR及负担，原生API 缺: 兼容性，性能在不同手机上显示差别很大 |
+| X5 WebView                 | 一般     | 494              | 腾讯产品，微信，QQ浏览器就是使用X5内核 | 优：提供了一个兼容性的解决方案,且微信，QQ浏览器都在用，可信度高  缺: 解决的能力一般，而且某些方面反而加大了开发工作量;而且不支持cordova | 
+| crosswalk                  | 最佳     | 498              |  国外为Android提供的一个融合chrome webkit的解决方案 | 优:没有兼容性，性能问题,且支持corodva 缺：18M的包，而且区分不同的arm,x86等CPU |
+| GeckoView                  |          | 492              | | |
 
 笔者有一个较老的华为荣耀3C手机，购置于3年前，分别使用系统自带的WebView,X5 WebView,Crosswalk三种模式访问html5test网站，得出的评分结果分别是:
 
