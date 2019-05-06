@@ -1,28 +1,85 @@
 apply plugin: 'com.android.application'
+def config   = rootProject.ext.android
+def librarys = rootProject.ext.dependencies
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion config.compileSdkVersion
 
     defaultConfig {
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+        multiDexEnabled true
         applicationId "android.space.lingen.webviewdemo"
-        minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        resConfigs('zh-rCN','en')     //只保留指定和默认的资源
+        //resConfigs "hdpi", "xhdpi", "xxhdpi", "xxxhdpi"
+        ndk {
+            abiFilters 'armeabi-v7a'//'x86', 'x86_64', 'arm64-v8a'
         }
+    }
+
+    splits {
+        density {
+            enable true                                             //启用密度分割机制
+            exclude "ldpi", "tvdpi", "xxxhdpi"                      //默认包含所有密度，可以指定删除。
+            //include                                               //表明包含哪些密度
+            compatibleScreens 'small', 'normal', 'large', 'xlarge'  //表示兼容屏幕的列表。将在清单中注入匹配的<compatible-screens> <screen ...>节点。
+        }
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            pseudoLocalesEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            minifyEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro', '../proguard/tbsx5-proguard.pro', '../proguard/crosswalk-proguard.pro', '../proguard/geckoview-proguard.pro'
+        }
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false" // 显示Log
+            pseudoLocalesEnabled true   // 如果没有提供混淆规则文件，则设置默认的混淆规则文件(SDK/tools/proguard/proguard-android.txt)
+            zipAlignEnabled true        // Zipalign优化
+            shrinkResources true        // 是否去除无效的资源文件
+            minifyEnabled true          // 是否混淆
+            useProguard true
+            //multiDexKeepFile file 'multidex-config.txt'
+            //multiDexKeepProguard 'multidex-config.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro', '../proguard/tbsx5-proguard.pro', '../proguard/crosswalk-proguard.pro', '../proguard/geckoview-proguard.pro'
+        }
+    }
+
+    dexOptions {
+        // Sets the maximum number of DEX processes
+        // that can be started concurrently.
+        maxProcessCount 8
+        // Sets the maximum memory allocation pool size
+        // for the dex operation.
+        javaMaxHeapSize "4g"
+        // Enables Gradle to pre-dex library dependencies.
+        preDexLibraries true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    //noinspection GradleCompatible,GradleDependency
+    implementation "com.android.support:appcompat-v7:$librarys.support_appcompat_v7"
+    implementation 'com.android.support:multidex:1.0.3'
 
-    compile project(':crosswalk')
+    api project(':crosswalk_library')
+    api project(':tbsx5_library')
+    api project(':geckoview_library')
+
 }
+//api(project(':geckoview_library')) {
+//    exclude group: "com.google.android.exoplayer", module: ""
+//}

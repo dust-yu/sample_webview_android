@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <fragment
-        android:name="android.space.lingen.webviewdemo.Main.webview.fragment.OrignalWebViewFragment"
+        android:name="android.space.lingen.webviewdemo.Main.webview.fragment.OriginalWebViewFragment"
         android:id="@+id/fragment_common"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

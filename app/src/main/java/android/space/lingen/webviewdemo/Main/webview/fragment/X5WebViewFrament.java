@@ -8,15 +8,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
+import com.tencent.smtt.sdk.QbSdkEngine;
+import com.tencent.smtt.sdk.X5WebView;
 
 /**
  * Created by lingen on 5/15/16.
  */
 public class X5WebViewFrament extends Fragment {
 
-    private WebView webView;
+    private X5WebView webView;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        QbSdkEngine.init(getContext());
+    }
 
     @Nullable
     @Override
@@ -27,15 +33,7 @@ public class X5WebViewFrament extends Fragment {
     }
 
     private void findView(View view){
-        this.webView = (WebView) view.findViewById(R.id.webview_x5);
-        this.webView.getSettings().setJavaScriptEnabled(true);
-        this.webView.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
-                webView.loadUrl(s);
-                return true;
-            }
-        });
+        this.webView = view.findViewById(R.id.webview_x5);
     }
 
     @Override

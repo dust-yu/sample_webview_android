@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:name="android.space.lingen.webviewdemo.Main.webview.fragment.CrosswalkWebViewFragment">
 
 
     <org.xwalk.core.XWalkView
         android:id="@+id/webview_crosswalk"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
 
-    </org.xwalk.core.XWalkView>
 </RelativeLayout>

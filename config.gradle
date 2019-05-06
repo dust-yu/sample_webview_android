@@ -1,0 +1,28 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+ext {
+    android = [
+        compileSdkVersion: 28,
+        buildToolsVersion: '28.0.3',
+        minSdkVersion: 21,
+        targetSdkVersion: 28,
+        versionCode: 1,
+        versionName: "1.0"
+    ]
+
+    // dependencies versions
+    dependencies = [
+        support_appcompat_v7: "23.4.0",
+    ]
+    // webviews versions
+    webviews = [
+        tbsX5Version: "4.3.0.1020_43633",
+        // crosswalkChannel = xwalk_core_library_canary
+        crosswalkVersion: "23.53.589.4",
+        // geckoviewChannel = "nightly"
+        geckoviewVersion: "66.0.20190322021635",
+    ]
+}
+//def config   = rootProject.ext.android
+//def librarys = rootProject.ext.dependencies
+//def webviews = rootProject.ext.webviews

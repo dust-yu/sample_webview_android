@@ -1,1 +1,1 @@
-include ':app', ':crosswalk'
+include ':app', ':tbsx5_library', ':crosswalk_library', ':geckoview_library'

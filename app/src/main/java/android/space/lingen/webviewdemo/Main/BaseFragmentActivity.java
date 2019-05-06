@@ -15,7 +15,6 @@ import android.widget.ImageButton;
  */
 public abstract class BaseFragmentActivity extends AppCompatActivity{
 
-
     private ImageButton homeButton;
 
     @Override
@@ -23,17 +22,15 @@ public abstract class BaseFragmentActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         if (findViewById(R.id.fragment_common) != null){
             if (savedInstanceState != null){
                 return;
             }
 
             Fragment fragment = getFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_common,fragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_common, fragment).commit();
 
             this.homeButton = (ImageButton) findViewById(R.id.webview_home);
-
 
             this.homeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -45,7 +42,10 @@ public abstract class BaseFragmentActivity extends AppCompatActivity{
                 }
             });
         }
+    }
 
+    protected Fragment findFragmentById() {
+        return getSupportFragmentManager().findFragmentById(R.id.fragment_common);
     }
 
     public abstract Fragment getFragment();

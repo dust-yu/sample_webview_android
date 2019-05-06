@@ -15,8 +15,8 @@ import org.xwalk.core.XWalkView;
  */
 public class CrosswalkWebViewFragment extends Fragment {
 
-
     private XWalkView webView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -26,13 +26,15 @@ public class CrosswalkWebViewFragment extends Fragment {
     }
 
     private void findView(View view){
-        this.webView = (XWalkView) view.findViewById(R.id.webview_crosswalk);
-
-
+        this.webView = view.findViewById(R.id.webview_crosswalk);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        this.webView.load("http://html5test.com",null);
+
+    }
+
+    public void onWebViewLoad() {
+        this.webView.loadUrl("http://html5test.com");
     }
 }
