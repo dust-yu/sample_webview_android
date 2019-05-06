@@ -25,7 +25,7 @@ Hybrid 技术开发，当前的趋势是HTML占据了越来越重要的位置，
 4. [Mozilla Gecko浏览器引擎的Geckoview](https://mozilla.github.io/geckoview/)
 
 
-如上述几种方案的对照如下表:
+如上述几种方案的对照如下表：
 
 ##### 测试对比性能指标：(未设置浏览器缓存)
 
