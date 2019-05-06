@@ -33,19 +33,22 @@ Hybrid 技术开发，当前的趋势是HTML占据了越来越重要的位置，
 |----------              |---------|--------        |-------  |-------|
 | OriginalWebView(系统默认)  | 最差     | 485               | Android默认 | 优：没有额外的JAR及负担，原生API 缺: 兼容性，性能在不同手机上显示差别很大 |
 | X5 WebView                 | 一般     | 494              | 腾讯产品，微信，QQ浏览器就是使用X5内核 | 优：提供了一个兼容性的解决方案,且微信，QQ浏览器都在用，可信度高  缺: 解决的能力一般，而且某些方面反而加大了开发工作量;而且不支持cordova | 
-| crosswalk                  | 最佳     | 498              |  国外为Android提供的一个融合chrome webkit的解决方案 | 优:没有兼容性，性能问题,且支持corodva 缺：18M的包，而且区分不同的arm,x86等CPU |
+| Crosswalk                  | 最佳     | 498              |  国外为Android提供的一个融合chrome webkit的解决方案 | 优:没有兼容性，性能问题,且支持corodva 缺：18M的包，而且区分不同的arm,x86等CPU |
 | GeckoView                  |          | 492              | | |
 
 笔者有一个较老的华为荣耀3C手机，购置于3年前，分别使用系统自带的WebView,X5 WebView,Crosswalk三种模式访问html5test网站，得出的评分结果分别是:
 
-> 系统自带的WebView
-![自带WebView](http://media.lingenliu.com/android_webview_orignal.jpeg-default)
+> OriginalWebView
+![系统默认](https://raw.githubusercontent.com/dust-yu/sample_webview_android/master/screenshot/Screenshot_20190506_193808_android.space.lingen.webviewdemo.jpg)
 
-> X5内核WebView
-![X5内核](http://media.lingenliu.com/android_webview_x5.jpeg-default)
+> X5 WebView
+![X5 WebView](https://github.com/dust-yu/sample_webview_android/blob/master/screenshot/Screenshot_20190506_193824_android.space.lingen.webviewdemo.jpg?raw=true)
 
 > Crosswalk WebView
-![crosswalk](http://media.lingenliu.com/android_webview_crosswalk.jpeg-default)
+![Crosswalk](https://github.com/dust-yu/sample_webview_android/blob/master/screenshot/Screenshot_20190506_193831_android.space.lingen.webviewdemo.jpg?raw=true)
+
+> GeckoView
+![GeckoView](https://github.com/dust-yu/sample_webview_android/blob/master/screenshot/Screenshot_20190506_193841_android.space.lingen.webviewdemo.jpg?raw=true)
 
 
 如上所述，crosswalk的效果是显而易见；笔者所有公司的APP项目也是使用crosswalk做为Android WebView
