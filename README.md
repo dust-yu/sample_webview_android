@@ -30,25 +30,34 @@ Hybrid 技术开发，当前的趋势是HTML占据了越来越重要的位置，
 ##### 测试对比性能指标：(未设置浏览器缓存)
 
 | WebView方案                | 实际效果 | html5test评测分数 | 方案说明 | 优缺点 |
-|----------              |---------|--------        |-------  |-------|
-| OriginalWebView(系统默认)  | 最差     | 485               | Android默认 | 优：没有额外的JAR及负担，原生API 缺: 兼容性，性能在不同手机上显示差别很大 |
-| X5 WebView                 | 一般     | 494              | 腾讯产品，微信，QQ浏览器就是使用X5内核 | 优：提供了一个兼容性的解决方案,且微信，QQ浏览器都在用，可信度高  缺: 解决的能力一般，而且某些方面反而加大了开发工作量;而且不支持cordova | 
-| Crosswalk                  | 最佳     | 498              |  国外为Android提供的一个融合chrome webkit的解决方案 | 优:没有兼容性，性能问题,且支持corodva 缺：18M的包，而且区分不同的arm,x86等CPU |
-| GeckoView                  |          | 492              | | |
+|----------              |---------|---------       |-------  |-------|
+| OriginalWebView(系统默认)  | 最弱     | 485              | Android默认                                               | 优：不需要依赖额外的JAR或so库，系统原生API。 缺：兼容性不好，性能在不同手机上差异较大。 |
+| X5 WebView                 | 一般     | 494              | X5内核为QQ浏览器、微信、手机QQ,提供稳定安全的增强浏览服务 | 优：各平台兼容性一致，支持动态下载内核、且共享宿主内核方案，SDK占用工程大小不到400K，且腾讯系产品QQ浏览器、微信、手机QQ正在使用，可信度高/持续维护。  缺：Cordova支持不友好，不支持arm64位的so库,不支持静态工程依赖的方式，不支持海外版本(由于GooglePlay限制，不允许二进制代码的动态下发，导致审核会出问题)。 | 
+| Crosswalk                  | 最佳     | 498              | Intel 开源技术中心发起的基于 Chromium/Blink的方案         | 优：各平台兼容性一致，性能较好，Corodva支持友好，支持静态工程依赖方式。 缺：占用工程大小JAR包3.6M+|so库armeabi-v7a下36M+，区分不同的arm/arm64/x86等CPU架构，不支持动态下载内核|宿主共享支持不友好。 |
+| GeckoView                  | 一般     | 492              | Mozilla  | |
 
-笔者有一个较老的华为荣耀3C手机，购置于3年前，分别使用系统自带的WebView,X5 WebView,Crosswalk三种模式访问html5test网站，得出的评分结果分别是:
+<!--笔者有一个较老的华为荣耀3C手机，购置于3年前，分别使用系统自带的WebView,X5 WebView,Crosswalk三种模式访问html5test网站，得出的评分结果分别是:-->
 
+<!--![系统默认](https://raw.githubusercontent.com/dust-yu/sample_webview_android/master/screenshot/Screenshot_20190506_193808_android.space.lingen.webviewdemo.jpg){:height="100" width="400" zoom: 50%;}-->
 > OriginalWebView
-![系统默认](https://raw.githubusercontent.com/dust-yu/sample_webview_android/master/screenshot/Screenshot_20190506_193808_android.space.lingen.webviewdemo.jpg)
+<div align="center">    
+<img src="https://raw.githubusercontent.com/dust-yu/sample_webview_android/master/screenshot/Screenshot_20190506_193808_android.space.lingen.webviewdemo.jpg" width="300" height="560" alt="系统默认" align="center" />
+</div>
 
 > X5 WebView
-![X5 WebView](https://github.com/dust-yu/sample_webview_android/blob/master/screenshot/Screenshot_20190506_193824_android.space.lingen.webviewdemo.jpg?raw=true)
+<div align="center">    
+<img src="https://github.com/dust-yu/sample_webview_android/blob/master/screenshot/Screenshot_20190506_193824_android.space.lingen.webviewdemo.jpg?raw=true" width="300" height="560" alt="X5 WebView" align="center" />
+</div>
 
 > Crosswalk WebView
-![Crosswalk](https://github.com/dust-yu/sample_webview_android/blob/master/screenshot/Screenshot_20190506_193831_android.space.lingen.webviewdemo.jpg?raw=true)
+<div align="center">    
+<img src="https://github.com/dust-yu/sample_webview_android/blob/master/screenshot/Screenshot_20190506_193831_android.space.lingen.webviewdemo.jpg?raw=true" width="300" height="560" alt="Crosswalk" align="center" />
+</div>
 
 > GeckoView
-![GeckoView](https://github.com/dust-yu/sample_webview_android/blob/master/screenshot/Screenshot_20190506_193841_android.space.lingen.webviewdemo.jpg?raw=true)
+<div align="center">    
+<img src="https://github.com/dust-yu/sample_webview_android/blob/master/screenshot/Screenshot_20190506_193841_android.space.lingen.webviewdemo.jpg?raw=true" width="300" height="560" alt="GeckoView" align="center" />
+</div>
 
 
 如上所述，crosswalk的效果是显而易见；笔者所有公司的APP项目也是使用crosswalk做为Android WebView
