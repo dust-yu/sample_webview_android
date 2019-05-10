@@ -21,8 +21,9 @@ Hybrid 技术开发，当前的趋势是HTML占据了越来越重要的位置，
 
 1. Android系统默认的WebView
 2. [腾讯 X5内核的X5WebView](https://x5.tencent.com/)
-3. [Crosswalk 基于Chromium/Blink的WebView](https://github.com/crosswalk-project)
-4. [Mozilla Gecko浏览器引擎的Geckoview](https://mozilla.github.io/geckoview/)
+3. [UC U4内核](http://www.open-uc.cn/solution/u4)
+4. [Crosswalk 基于Chromium/Blink的WebView](https://github.com/crosswalk-project)
+5. [Mozilla Gecko浏览器引擎的Geckoview](https://mozilla.github.io/geckoview/)
 
 
 如上述几种方案的对照如下表：
@@ -30,15 +31,19 @@ Hybrid 技术开发，当前的趋势是HTML占据了越来越重要的位置，
 ##### 测试对比性能指标：(未设置浏览器缓存)
 
 | WebView方案                | 实际效果 | html5test评测分数| 手机系统 | 方案说明 | 优缺点 |
-|----------              |---------|---------      |----     |-------  |-------|
+|----------              | ------  |---------      |----     |-------  |-------|
 | OriginalWebView(系统默认)  | 最弱     | 485             | Honor10Lite/Android 9.0| Android默认                                               | 优：不需要依赖额外的JAR或so库，系统原生API。 缺：兼容性不好，性能在不同手机上差异较大。 |
-| X5 WebView                 | 一般     | 494             | Honor10Lite/Android 9.0 | X5内核为QQ浏览器、微信、手机QQ,提供稳定安全的增强浏览服务 | 优：各平台兼容性一致，支持动态下载内核、且共享宿主内核方案，SDK占用工程大小不到400K，且腾讯系产品QQ浏览器、微信、手机QQ正在使用，可信度高/持续维护。  缺：Cordova支持不友好，不支持arm64位的so库,不支持静态工程依赖的方式，不支持海外版本(由于GooglePlay限制，不允许二进制代码的动态下发，导致审核会出问题)。 | 
+| X5 WebView                 | 一般     | 494             | Honor10Lite/Android 9.0 | X5内核为QQ浏览器、微信、手机QQ,提供稳定安全的增强浏览服务 | 优：各平台兼容性一致，支持动态下载内核、且共享宿主内核方案，SDK占用工程大小不到400K，且腾讯系产品QQ浏览器、微信、手机QQ正在使用，可信度高/持续维护。  缺：Cordova支持不友好，不支持arm64位的so库,不支持静态工程依赖的方式，不支持海外版本(由于GooglePlay限制，不允许二进制代码的动态下发，导致审核会出问题)。 |
+| UC U4WebView               | --       | --              | Honor10Lite/Android 9.0 | U4 内核已经用在 UC 浏览器及淘宝，支付宝等APP。  |    | 
 | Crosswalk                  | 最佳     | 498             | Honor10Lite/Android 9.0 | Intel 开源技术中心发起的基于 Chromium/Blink的方案         | 优：各平台兼容性一致，性能较好，Corodva支持友好，支持静态工程依赖方式。 缺：占用工程大小JAR包3.6M+|so库armeabi-v7a下36M+，区分不同的arm/arm64/x86等CPU架构，不支持动态下载内核|宿主共享支持不友好。 |
-| GeckoView                  | 一般     | 492             | Honor10Lite/Android 9.0 | Mozilla  | |
+| GeckoView                  | 一般     | 492             | Honor10Lite/Android 9.0 | GeckoView是Firefox的引擎，并打包成可重复使用的Android库   | 优：Mozilla使用GeckoView为Firefox Reality，Firefox Focus等提供支持，支持静态工程依赖方式。 缺：占用工程大小JAR包1.62M+|so库armeabi-v7a下58.2M+，区分不同的arm/arm64/x86等CPU架构，不支持动态下载内核。  |
 
-<!--笔者有一个较老的华为荣耀3C手机，购置于3年前，分别使用系统自带的WebView,X5 WebView,Crosswalk三种模式访问html5test网站，得出的评分结果分别是:-->
 
-<!--![系统默认](https://raw.githubusercontent.com/dust-yu/sample_webview_android/master/screenshot/Screenshot_20190506_193808_android.space.lingen.webviewdemo.jpg){:height="100" width="400" zoom: 50%;}-->
+
+<!--[浏览器内核检测网站](http://liulanmi.com/labs/core.html)-->
+测试使用机型：华为Honor10Lite，分别以上几种模式访问[html5test网站](http://html5test.com/)，得出评分结果如下:
+
+![系统默认](https://raw.githubusercontent.com/dust-yu/sample_webview_android/master/screenshot/Screenshot_20190506_193808_android.space.lingen.webviewdemo.jpg){:height="100" width="400" zoom: 50%;}
 > OriginalWebView
 <div align="center">    
 <img src="https://raw.githubusercontent.com/dust-yu/sample_webview_android/master/screenshot/Screenshot_20190506_193808_android.space.lingen.webviewdemo.jpg" width="300" height="560" alt="系统默认" align="center" />
@@ -59,6 +64,8 @@ Hybrid 技术开发，当前的趋势是HTML占据了越来越重要的位置，
 <img src="https://github.com/dust-yu/sample_webview_android/blob/master/screenshot/Screenshot_20190506_193841_android.space.lingen.webviewdemo.jpg?raw=true" width="300" height="560" alt="GeckoView" align="center" />
 </div>
 
+<br/>
+<br/>
 
 参见以上测试结果：
 
@@ -77,6 +84,8 @@ Crosswalk 效果最好：
 3. 区分不同的arm/arm64/x86等CPU架构，如果需要要支持arm64 X86 CPU，还需额外增加加so库。
 4. 不支持动态下载内核，宿主共享支持不友好
 
+<br/>
+<br/>
 
 TBS X5 WebView 效果中等：
 
@@ -93,10 +102,12 @@ TBS X5 WebView 效果中等：
 3. Cordova支持不友好
 4. 不支持海外版本(由于GooglePlay限制，不允许二进制代码的动态下发，导致审核会出问题)
 
-
+<br/>
+<br/>
 
 因此，结论：
 
 1. 考虑使用方便，以及维护问题。 建议选择TBS X5，比较腾讯系各产品早已内置这个方案，且支持共享内核方案。  如果，国内APP则可以选择该方案，既能保证H5性能，又能不占用过多工程空间。
-2. 类似笔者公司这样的APP，对H5有非常高的要求，大量的业务系统是由H5完成，且需要cordova与原生进行大量的交互 ，那这种情况下,crosswalk是我们唯一的选择，虽然加大了18M，但带来的好处是显而易见的
-
+2. UC U4内核需要申请账号且通过审核后，才能拿到U4内核SDK，因此目前没有做比对测试。 但是其可靠性与 TBS X5等同，同样阿里系各产品已经内置该方案。
+3. 如果对H5性能要求很高，且需要支持Cordova与原生API ，那Crosswalk是不错的选择。但随之而来的是工程空间占用大，打包后APK过大问题。但最明显的问题是Crosswalk已经很久没有新的维护了。
+4. GeckoView是Firefox开放的方案，占用空间更大。性能较一般，但目前处于维护状态，且Mozilla使其为Firefox Reality，Firefox Focus等提供支持，可靠性高。
