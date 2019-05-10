@@ -19,11 +19,11 @@ Hybrid 技术开发，当前的趋势是HTML占据了越来越重要的位置，
 
 ##### 目前已知 Android WebView的可选替换方案： 
 
-1. Android系统默认的WebView
-2. [腾讯 X5内核的X5WebView](https://x5.tencent.com/)
+1. Android系统默认的 WebView
+2. [腾讯 X5内核的 X5WebView](https://x5.tencent.com/)
 3. [UC U4内核](http://www.open-uc.cn/solution/u4)
-4. [Crosswalk 基于Chromium/Blink的WebView](https://github.com/crosswalk-project)
-5. [Mozilla Gecko浏览器引擎的Geckoview](https://mozilla.github.io/geckoview/)
+4. [Crosswalk 基于Chromium/Blink的 WebView](https://github.com/crosswalk-project)
+5. [Mozilla Gecko浏览器引擎 Geckoview](https://mozilla.github.io/geckoview/)
 
 
 如上述几种方案的对照如下表：
@@ -43,7 +43,7 @@ Hybrid 技术开发，当前的趋势是HTML占据了越来越重要的位置，
 <!--[浏览器内核检测网站](http://liulanmi.com/labs/core.html)-->
 测试使用机型：华为Honor10Lite，分别以上几种模式访问[html5test网站](http://html5test.com/)，得出评分结果如下:
 
-![系统默认](https://raw.githubusercontent.com/dust-yu/sample_webview_android/master/screenshot/Screenshot_20190506_193808_android.space.lingen.webviewdemo.jpg){:height="100" width="400" zoom: 50%;}
+<!--![系统默认](https://raw.githubusercontent.com/dust-yu/sample_webview_android/master/screenshot/Screenshot_20190506_193808_android.space.lingen.webviewdemo.jpg){:height="100" width="400" zoom: 50%;}-->
 > OriginalWebView
 <div align="center">    
 <img src="https://raw.githubusercontent.com/dust-yu/sample_webview_android/master/screenshot/Screenshot_20190506_193808_android.space.lingen.webviewdemo.jpg" width="300" height="560" alt="系统默认" align="center" />
@@ -69,7 +69,7 @@ Hybrid 技术开发，当前的趋势是HTML占据了越来越重要的位置，
 
 参见以上测试结果：
 
-Crosswalk 效果最好：
+##### Crosswalk 效果最好：
 
 1. 基于Chromium/Blink内核的方案，兼容性不存在任何问题
 2. 性能佳
@@ -87,7 +87,7 @@ Crosswalk 效果最好：
 <br/>
 <br/>
 
-TBS X5 WebView 效果中等：
+##### TBS X5 WebView 效果中等：
 
 1. 腾讯系产品QQ浏览器、微信、手机QQ正在使用，可信度高/持续维护
 2. SDK占用工程大小不到400K，支持动态下载内核、共享宿主内核的方案
